@@ -1,7 +1,4 @@
 <?php
-
-
-
 echo info_msg('<h3>Generar una Nueva Propuesta de Tesis</h3>');
     echo '<br>';
     echo Open('form', array('action' => base_url('propuestas/crt_propuestas/ingresa_tema'), 'method' => 'post'));
@@ -49,10 +46,9 @@ echo info_msg('<h3>Generar una Nueva Propuesta de Tesis</h3>');
                         echo input(array('type' => 'text', 'name' => 'title', 'id' => 'title', 'placeholder' => 'Escriba titulo de  la tesis', 'class' => 'form-control'));
                     echo Close('div');
                 echo Close('div'); 
-
+                
                 $textarea = tagcontent('textarea', '', array('class' => 'form-control', 'rows' => '8', 'placeholder' => 'Razones por la cuales plantea la tesis', 'name' => 'razon','id'=>'razon'));
                 echo tagcontent('div', $textarea, array('id' => 'textarea', 'class' => 'col-md-12'));
-                echo Close('div');
             echo Close('div');
             echo lineBreak(1);
         echo tagcontent('button', 'Continuar >>', array('name' => 'btnreportes', 'class' => 'btn btn-success  col-md-0', 'id' => 'ajaxformbtn', 'type' => 'submit', 'data-target' => 'opcion_elegida'));

@@ -29,6 +29,7 @@ class crt_propuestas extends CI_Controller {
         $res['titulo'] = $this->input->post('title');
         $res['razon'] = $this->input->post('razon');
         $res['datos_emp'] = $this->generic_model->get('gp_persona', array('cedula' => $this->input->post('emp_id')), '');
+        
         $this->load->view('propuestas/preview_tema', $res);
     }
 

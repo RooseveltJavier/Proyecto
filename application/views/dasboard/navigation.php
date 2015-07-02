@@ -69,7 +69,9 @@ if(!empty($module_title)){
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i>dfdasd</a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i><?= $this->user->username 
+                                
+                                ?></a>
                         </li>
                         <li><a href="<?= base_url('login/editprofile') ?>"><i class="fa fa-gear fa-fw"></i> Configuraci&oacute;n</a>
                         </li>

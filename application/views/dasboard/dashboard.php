@@ -60,8 +60,9 @@ $js = array(
 );
 echo jsload($js);
 
-$res['module_title'] = 'Ventas';
-$this->load->view('dasboard/navigation.php',$res);    
+///
+//$res['module_title'] = 'Ventas';
+$this->load->view('dasboard/navigation.php');    
 
 $page_class = '';
 if(!empty($slidebar)){
