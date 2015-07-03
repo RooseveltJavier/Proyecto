@@ -45,4 +45,10 @@ class Estudiantes extends CI_Controller {
         $res['slidebar'] = $this->load->view('estudiantes/slidebar_lte', '', TRUE);
         $this->load->view('dasboard/dashboard_lte', $res, '', TRUE);
  }
+ public function add_mod_usuarios() {
+      $res['view'] = $this->load->view('estudiantes/lista_usu_add_mod', '', TRUE);
+        $res['slidebar'] = $this->load->view('estudiantes/slidebar_lte', '', TRUE);
+        $this->load->view('dasboard/dashboard_lte', $res, '', TRUE);
+ }
+
 }

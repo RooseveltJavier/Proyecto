@@ -29,11 +29,12 @@
         echo lineBreak(4);
             if(!empty($dat)):
                 foreach ($dat as $value) {
+                if($value->activo == 1):
                 $val= $value->icon;
                 $url_base =$value->url;
                 $id=$value->id;
                  echo '<div class="col-lg-3 col-md-6">';
-                    echo '<div class="panel panel-info">';
+                    echo '<div class="panel panel-primary">';
                         echo '<div class="panel-heading">';
                             echo '<div class="row">';
                                echo '<div class="col-xs-3">';
@@ -58,6 +59,10 @@
                    
                        echo '</div>';
                 echo '</div>';
+                    else:
+                    echo 'asaas';
+                endif;
+                
                    }
             endif;
         

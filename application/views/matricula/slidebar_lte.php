@@ -19,17 +19,17 @@
                 echo $slidebar_actions;
             }
           ?>
-            <li class="header">USUARIOS</li>
+            <li class="header">MATRICULACION DE USUARIOS</li>
             
-                <li> 
+<!--                <li> 
                     <a href="<?= base_url('estudiante/estudiantes/new_estudiante') ?>"><i class="glyphicon glyphicon-hand-up"></i>Ingresar Usuario</a> 
                 </li>
                 <li> 
                     <a href="<?= base_url('estudiante/estudiantes/add_mod_usuarios') ?>"><i class="glyphicon glyphicon-hand-up"></i>Agregar Modulos a Usuario</a> 
                 </li>
-                
+                -->
                 <li> 
-                    <a href="<?= base_url('estudiante/estudiantes/get_crud') ?>"><i class="glyphicon glyphicon-hand-up"></i>Config Usuario</a> 
+                    <a href="<?= base_url('matriculacion/matricula/get_crud') ?>"><i class="glyphicon glyphicon-hand-up"></i>Expediente Academico</a> 
                 </li>
           
           </ul>

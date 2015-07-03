@@ -7,7 +7,7 @@ Class Login_model extends CI_Model
     $query = $this->db->query('SELECT em.id, em.cedula cedulausu, em.usu username,
 	em.nombres nombres, em.apellidos apellidos,em.essuperusuario essuperusuario ,em.email email
 	FROM  gp_persona em
-    	WHERE em.usu = "' . $username . '" AND em.pass = "' . $password . '"');
+    	WHERE em.usu = "' . $username . '" AND em.pass = "' . md5($password) . '"');
    if($query -> num_rows() == 1)
    {
      return $query->result();

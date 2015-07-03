@@ -7,7 +7,7 @@ echo Open('form', array('action' => base_url('estudiante/crt_estudiante/new_estu
          echo Open('div',array('class'=>'col-md-4 form-group'));
                  echo Open('div',array('class'=>'input-group'));
                      echo tagcontent('span','<b>Usuario</b>: ', array('class'=>'input-group-addon'));
-                     echo input(array('type' => 'text', 'name' => 'usu', 'id' => 'usu','placeholder'=>'Uuario', 'class' => 'form-control'));
+                     echo input(array('type' => 'text', 'name' => 'usu', 'id' => 'usu','placeholder'=>'Usuario', 'class' => 'form-control'));
                  echo Close('div');
          echo Close('div');
          echo Open('div',array('class'=>'col-md-4 form-group'));

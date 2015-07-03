@@ -78,7 +78,7 @@ private $obj_login;
             '1' => array('table' => 'gp_persona be', 'condition' => 'bf.id_persona = be.id'));
             
 
-        $res['dat'] = $this->generic_model->get_join(
+         $res['dat'] = $this->generic_model->get_join(
                 'gp_mod_persona bf', $where_data, $join_cluase, 'bf.*, bc.*, be.*', '');
 
 //                 $this->load->view('dasboard/panel_control',$res);
