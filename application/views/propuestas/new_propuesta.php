@@ -28,7 +28,7 @@ echo info_msg('<h3>Generar una Nueva Propuesta de Tesis</h3>');
                         echo $tiposdepar_combo;
                     echo Close('div');
                 echo Close('div'); 
-                $periodos_combo = combobox($periodo, array('label'=>'fecha_periodo','value'=>'id_perido'), array('name'=>'id_periodo','class'=>'form-control'), true);
+                $periodos_combo = combobox($periodo, array('label'=>'siglas','value'=>'id_per'), array('name'=>'id_periodo','class'=>'form-control'), true);
                 echo Open('div',array('class'=>'col-md-4 form-group'));
                     echo Open('div',array('class'=>'input-group'));
                         echo tagcontent('span', '<b>Periodo Academico:</b> ', array('class'=>'input-group-addon'));

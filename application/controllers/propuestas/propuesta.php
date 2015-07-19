@@ -40,4 +40,11 @@ class propuesta extends CI_Controller{
         $output = $this->load->view('propuestas/new_propuesta', $res,TRUE);
         return $output;
     }
+    
+    public function get_crud_propuesta() {
+        $res['view'] = $this->load->view('propuestas/lista_propuesta', '', TRUE);
+        $res['slidebar'] = $this->load->view('propuestas/slidebar_lte','',TRUE);
+        $this->load->view('dasboard/dashboard_lte',$res,'', TRUE);
+        
+    }
 }
