@@ -196,6 +196,7 @@ class crt_propuestas extends CI_Controller {
        
        // $mail->SMTPDebug = 1;
         $mail->Host = 'smtp.gmail.com';
+     
         $mail->Port = 587;
        // $mail->Port = 465;
         $mail->FromName = 'SecureService';
