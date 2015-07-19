@@ -175,121 +175,31 @@ class crt_propuestas extends CI_Controller {
                 "fecha_cambio" => $fecha_cambio,
                 "id_estado" => $estado,
             );
-            //   $this->generic_model->save($get_save, 'gp_historial');
+            $this->generic_model->save($get_save, 'gp_historial');
             echo tagcontent('script', 'alertaExito("Registro con exito....!!!")');
         } else {
             echo tagcontent('script', 'alertaError("No admite datos vacios....!!!")');
         }
        
         
-        
-        //$this->load->library("class.phpmailer");
-        require_once('lib_php_mail/lib_php_mail/class.phpmailer.php');
-        require_once("lib_php_mail/lib_php_mail/class.smtp.php");
-//        require_once("PHPMailer/class.phpmailer.php");
-//        require_once("PHPMailer/class.smtp.php");
-
-        $mensaje = 'hola mundo';
-        $para = 'angelvcuenca@gmail.com';
-        $mail = new PHPMailer();
-        $mail->SMTPDebug=2;
-        $mail->IsSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
-        //$mail->SMTPSecure = 'tsl';
-        // $mail->SMTPDebug = 1;
-        $mail->Host = 'smtp.gmail.com';
-
-        //$mail->Port = 587;
-        $mail->Port = 465;
-        $mail->FromName = 'SecureService';
-        $mail->From = 'secureservicecompany@gmail.com';
-        //Nuestra cuenta
-        $mail->Username = 'angelvcuenca@gmail.com';
-        $mail->Password = 'angel1104133648'; //Su password
-        //Agregar destinatario
-        $mail->AddAddress($para);
-        $mail->Subject = 'Certificado SecureService';
-        $mail->Body = $mensaje;
-        //Para adjuntar archivo
-        // $mail->AddAttachment($archivo['tmp_name'], $archivo['name']);
-        $mail->IsHTML($mensaje);
-        //  $mail->Send();
-        if (!$mail->Send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message sent!";
-        }
-        echo '<br>';
-        echo '*************************************';
-        echo '<br>';
-        $config['protocol']    = 'smtp';
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
-        $config['smtp_port']    = '465';
-        $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = 'angelvcuenca@gmail.com';
-        $config['smtp_pass']    = 'angel1104133648';
-        $config['charset']    = 'utf-8';
-        $config['newline']    = "\r\n";
-        $config['mailtype'] = 'text'; // or html
-        $config['validation'] = TRUE; // bool whether to validate email or not      
-
-        $this->email->initialize($config);
-
-        $this->email->from('angelvcuenca@gmail.com', 'myname');
-        $this->email->to('angelvcuenca@gmail.com'); 
-
-        $this->email->subject('Email Test');
-        $this->email->message('Testing the email class.');  
-
-        $this->email->send();
-
-        echo $this->email->print_debugger();
-        echo '<br>';
-        echo '***********';
-        
-//        $mail = new PHPMailer();
-//        $mail->IsSMTP();
-//        $mail->CharSet = "UTF-8";
-//        $mail->SMTPAuth = true;
-//        $mail->SMTPSecure = 'ssl';
-//        $mail->Host = 'smtp.gmail.com';
-//        $mail->Port = 465;
-//        
-//        $mail->Username = 'angelvcuenca@gmail.com';
-//        $mail->Password = 'angel1104133648';
-//        
-//       
-//        $mail->From = 'angelvcuenca@gmail.com';
-//        $mail->FromName = 'Mohammad Masoudian';
-//        $mail->AddAddress('angelvcuenca@gmail.com');
-//        $mail->Subject = "PHPMailer Test Subject via Sendmail, basic";
-//        //$mail->AltBody = "To view the message, please use an HTML compatible email viewer!";
-//        $mail->Body = "Hello";
-//
-//        if (!$mail->Send()) {
-//            echo "Mailer Error: " . $mail->ErrorInfo;
-//        } else {
-//            echo "Message sent!";
-//        }
-        $correos='rusby09@gmail.com';
-        $clave='prueba';
-        $name_cliente='rusby';
+       // $correos='rusby09@gmail.com';
+     //   $clave='prueba';
+     //   $name_cliente='rusby';
         $email_prin='rusby09@gmail.com';
         
-        $this->send_email_mailingws($correos, $clave, $name_cliente, $email_prin);
+        $this->send_email_mailingws($email, $obser, $estado,$fecha_cambio,$usuario, $email_prin);
     }
-    public function send_email_mailingws($correos, $clave,$name_cliente, $email_from) {
+    public function send_email_mailingws($correos, $clave,$estado,$fecha,$name_cliente, $email_from) {
 
         $url = 'http://mailingws.billingsof.com/mailingws/send_mail/send';        //verificar lo del usuario que se logea para que tome eso datos
-        $msg_email = '<h3>Estimado(a) ' . $name_cliente . ' su nueva clave de acceso al sistema.</h3><br>'.'Nueva Contraseña: '.$clave.' <h3>Departamento de Sistemas. </h3></br>"';
+        $msg_email = '<h3>Estimado(a) ' . $name_cliente . ', Se realizo un nuevo cambio en su tesis publicada.</h3><br>'.'Observaciones: '.$clave.'<br>'.'Estado Cambio: '.$estado.'<br>'.'Fecha Cambio: '.$fecha.' <h3>Departamento de Sistemas. </h3></br>"';
        // $email_from = $email_prin;
        
 
         $data = array('email_from' => $email_from,
             'name_from' => 'TESIS UP LOAD',
             'email_to' => $correos,
-            'title' => 'Nueva Contraseña',
+            'title' => 'Notificacion Tesis',
             'msg' => $msg_email
         );
 

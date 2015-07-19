@@ -66,7 +66,7 @@ echo Open('form', array('action' => base_url('estudiante/crt_estudiante/new_estu
 
     echo Close('div'); 
 
-    echo tagcontent('button', 'Calcular', array('name' => 'btnreportes', 'class' => 'btn btn-success  col-md-1', 'id' => 'ajaxformbtn', 'type' => 'submit', 'data-target' => 'opcion_elegida'));
+    echo tagcontent('button', 'Grabar', array('name' => 'btnreportes', 'class' => 'btn btn-success  col-md-1', 'id' => 'ajaxformbtn', 'type' => 'submit', 'data-target' => 'opcion_elegida'));
     echo Close('form');
 
     echo tagcontent('div', '', array('id' => 'opcion_elegida', 'class' => 'col-md-6'));

@@ -116,8 +116,8 @@ echo Close('table');
                  echo Close('table');    
  
             }
-            echo $id_propuesta;
-            echo $email;
+           // echo $id_propuesta;
+           // echo $email;
             
  echo Open('form', array('action' => base_url('propuestas/crt_propuestas/save_historial'), 'method' => 'post'));
   echo input(array('type' => 'hidden', 'name' => 'id_pro', 'id' => 'id_pro', 'value' => $id_propuesta));
