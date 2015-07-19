@@ -19,6 +19,7 @@ class crt_propuestas extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('generic_model');
         $this->load->library('grocery_CRUD');
+          $this->load->library('email');
     }
 
     public function ingresa_tema() {
@@ -179,31 +180,33 @@ class crt_propuestas extends CI_Controller {
         } else {
             echo tagcontent('script', 'alertaError("No admite datos vacios....!!!")');
         }
-
+       
+        
+        
         //$this->load->library("class.phpmailer");
         require_once('lib_php_mail/lib_php_mail/class.phpmailer.php');
         require_once("lib_php_mail/lib_php_mail/class.smtp.php");
 //        require_once("PHPMailer/class.phpmailer.php");
 //        require_once("PHPMailer/class.smtp.php");
-        
-        $mensaje ='hola mundo';
+
+        $mensaje = 'hola mundo';
         $para = 'angelvcuenca@gmail.com';
         $mail = new PHPMailer();
+        $mail->SMTPDebug=2;
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
-       // $mail->SMTPSecure = 'ssl';
-       $mail->SMTPSecure = 'tsl';
-       
-       // $mail->SMTPDebug = 1;
+        $mail->SMTPSecure = 'ssl';
+        //$mail->SMTPSecure = 'tsl';
+        // $mail->SMTPDebug = 1;
         $mail->Host = 'smtp.gmail.com';
-     
-        $mail->Port = 587;
-       // $mail->Port = 465;
+
+        //$mail->Port = 587;
+        $mail->Port = 465;
         $mail->FromName = 'SecureService';
         $mail->From = 'secureservicecompany@gmail.com';
         //Nuestra cuenta
-        $mail->Username = 'secureservicecompany@gmail.com';
-        $mail->Password = 'securemaster'; //Su password
+        $mail->Username = 'angelvcuenca@gmail.com';
+        $mail->Password = 'angel1104133648'; //Su password
         //Agregar destinatario
         $mail->AddAddress($para);
         $mail->Subject = 'Certificado SecureService';
@@ -211,13 +214,40 @@ class crt_propuestas extends CI_Controller {
         //Para adjuntar archivo
         // $mail->AddAttachment($archivo['tmp_name'], $archivo['name']);
         $mail->IsHTML($mensaje);
-      //  $mail->Send();
+        //  $mail->Send();
         if (!$mail->Send()) {
             echo "Mailer Error: " . $mail->ErrorInfo;
         } else {
             echo "Message sent!";
         }
+        echo '<br>';
+        echo '*************************************';
+        echo '<br>';
+        $config['protocol']    = 'smtp';
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        $config['smtp_port']    = '465';
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user']    = 'angelvcuenca@gmail.com';
+        $config['smtp_pass']    = 'angel1104133648';
+        $config['charset']    = 'utf-8';
+        $config['newline']    = "\r\n";
+        $config['mailtype'] = 'text'; // or html
+        $config['validation'] = TRUE; // bool whether to validate email or not      
 
+        $this->email->initialize($config);
+
+        $this->email->from('angelvcuenca@gmail.com', 'myname');
+        $this->email->to('angelvcuenca@gmail.com'); 
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class.');  
+
+        $this->email->send();
+
+        echo $this->email->print_debugger();
+        echo '<br>';
+        echo '***********';
+        
 //        $mail = new PHPMailer();
 //        $mail->IsSMTP();
 //        $mail->CharSet = "UTF-8";
@@ -242,8 +272,39 @@ class crt_propuestas extends CI_Controller {
 //        } else {
 //            echo "Message sent!";
 //        }
+        $correos='rusby09@gmail.com';
+        $clave='prueba';
+        $name_cliente='rusby';
+        $email_prin='rusby09@gmail.com';
+        
+        $this->send_email_mailingws($correos, $clave, $name_cliente, $email_prin);
     }
+    public function send_email_mailingws($correos, $clave,$name_cliente, $email_from) {
 
+        $url = 'http://mailingws.billingsof.com/mailingws/send_mail/send';        //verificar lo del usuario que se logea para que tome eso datos
+        $msg_email = '<h3>Estimado(a) ' . $name_cliente . ' su nueva clave de acceso al sistema.</h3><br>'.'Nueva Contraseña: '.$clave.' <h3>Departamento de Sistemas. </h3></br>"';
+       // $email_from = $email_prin;
+       
+
+        $data = array('email_from' => $email_from,
+            'name_from' => 'TESIS UP LOAD',
+            'email_to' => $correos,
+            'title' => 'Nueva Contraseña',
+            'msg' => $msg_email
+        );
+
+        // use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
+                'content' => http_build_query($data)
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        return $result;
+    }
     public function save_tutor() {
         $id_persona = $this->input->post('id_persona');
         $id_propuesta = $this->input->post('id_pro');
